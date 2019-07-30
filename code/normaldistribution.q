@@ -44,6 +44,7 @@ invcnorm:{
     neg i.invnormcalc[`c;`d]sqrt neg 2.*log 1-x];
  u-r%1+.5*u*r:sqrt[2*acos -1]*exp[.5*u*u]*cnorm[u]-x}
 
+// Normal
 norm:{(1%sqrt 2*acos -1)*exp neg .5*x*x}
 
 // Coefficients for approximation to  erf on [0,0.84375]

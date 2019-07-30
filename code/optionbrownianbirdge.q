@@ -1,6 +1,7 @@
 // q version of OptionBrownianBridge.cpp
 /  brownian bridge approximation
 
+// brownian_bridge_options
 / * n  = number of steps
 / * bb = Brownian Bridge
 / * d  = dictionary of booleans, e.g. `sobol`bbridge!11b
