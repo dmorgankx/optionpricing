@@ -1,7 +1,7 @@
 // q version of BrownianBridge.cpp
 /  Original reference: Copyright (C) 2002 "Monte Carlo Methods in Finance". All rights reserved.
 
-\l ../code/bitshift.p
+\l ../code/Bitshift.p
 bitshift:.p.get[`bitshift;<]  / equivalent to bitshift operators (>>;<<)in C++/Python
 
 // BrownianBridge

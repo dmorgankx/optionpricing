@@ -42,7 +42,6 @@ assetprx:{[n;bb;s;v;r;q;t]
 /* npath   = number of paths
 /* ntrials = number of trials
 geocall:{[bs;param;bools;npath;nsteps;ntrials]
- -1$[bools`sobol;"Sobol sequences";"Random sequences"]," with ",$[bools`bbridge;"Brownian Bridge";"Standard"]," approximation.";
  r:i.trialerr[bs;param;bools;nsteps;npath;bbridge[nsteps;1.]]/[(0.;0 0.);til ntrials];
  (r[0]%ntrials;sqrt(err:r 1)[1]%ntrials)}
 

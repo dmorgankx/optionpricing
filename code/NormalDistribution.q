@@ -30,11 +30,16 @@ errfnc:{
  $[x>=0;:1-r%ax;:(r%ax)-1]}
 
 // CumulativeNormal
+
 cnorm:{
- $[0w~x;:1.;-0w~x;:0.;];
- d:`a`lsta`g`k`sm`r!(m;m:i.erfcoeff`dblmax;1.;1.;1.;.5*1+errfnc x*1%sqrt 2);
- if[i.erfcoeff[`dbleps]>=d`r;d:i.cnd i.cnormcalc[x]/[d]];
- d`r}
+ if[0f~x:`float$x;:.5];
+ t:1%1+i.cnvals[`pp]*abs x;
+ e:exp[neg[.5]*x*x]%sqrt 2*acos -1;
+ n:i.updfnc[1%1+i.cnvals[`pp]*abs x;1b]i.cnvals`b;
+ $[0f<x;1.-;]e*n}
+
+i.cnvals:`b`pp!(0.31938153 -0.356563782 1.781477937 -1.821255978 1.330274429; 0.2316419)
+
 
 // InverseCumulativeNormal
 invcnorm:{
@@ -86,3 +91,11 @@ i.cnormcalc:{[x;d]
  d}
 i.cnd:{(x[`lsta]>x`a)&i.erfcoeff[`dbleps]<=x`a}
 i.invnormcalc:{(i.radcoeff[x;5]+i.updfnc[z;0b]neg[1]_i.radcoeff x)%1+i.updfnc[z;0b]i.radcoeff y}
+
+
+/
+cnorm:{
+ $[0w~x;:1.;-0w~x;:0.;];
+ d:`a`lsta`g`k`sm`r!(m;m:i.erfcoeff`dblmax;1.;1.;1.;.5*1+errfnc x*1%sqrt 2);
+ if[i.erfcoeff[`dbleps]>=d`r;d:i.cnd i.cnormcalc[x]/[d]];
+ d`r}
