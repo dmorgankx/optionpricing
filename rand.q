@@ -1,5 +1,0 @@
-sobolrand:`:c/rand 2:(`sobolrand;1)
-mtinit   :`:c/rand 2:(`mtinit   ;1)
-mtrand1  :`:c/rand 2:(`mtrand1  ;1)
-mtrand2  :`:c/rand 2:(`mtrand2  ;1)
-mtrand3  :`:c/rand 2:(`mtrand3  ;1)
