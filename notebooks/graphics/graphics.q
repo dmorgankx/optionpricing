@@ -27,5 +27,5 @@ rmseplot:{[r]
   {x[`:plot][y`npaths;y z;`label pykw z];}[a;t]each e;
   a[`:set_title]string[m]," RMSE";
   a[`:legend][`loc pykw"upper right"];
-  }'[(ax0;ax1);`european`asian];
+  }'[(ax0;ax1);`euro`asia];
  plt[`:show][];}
