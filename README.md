@@ -1,12 +1,11 @@
-# Sobol Sequence Generator
+# Sobol Option Pricing
 
-This repository contains kdb+/q code, translated from C++, which demonstrates how the C++ Sobol sequence library (_SobolSeq16384_) can be used in financial problems.
+This repository contains kdb+/q code, translated from C++, which generates prices for Asian and European call options using both Black Scholes and Monte Carlo methods. In addition, q code has been used to wrap the C++ functions required within the Monte Carlo method, to generate both random and sobol sequences, and normal distributions.
 
-The Financial Examples notebook replicates the `main.cpp` C++ program which generates option prices for both Asian and European markets.
+A jupyter notebook has been provided to demonstate these methods in conjunction with the C++ Sobol sequence library (_SobolSeq16384_).
 
 ## Requirements
 
-- kdb+ ≥ 3.5 64-bit
-- Python ≥ 3.5.0 (macOS/Linux) ≥ 3.6.0 windows
-- [embedPy](https://github.com/KxSystems/embedPy)
+- [JupyterQ](https://github.com/KxSystems/jupyterq) - this produces a tree dependency for kdb+, Python and embedPy
 - SobolSeq16384 (available at [broda.co.uk](http://www.broda.co.uk/SobolSeq/SobolOptionPricing.ZIP))
+- matplotlib
