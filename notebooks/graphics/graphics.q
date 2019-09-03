@@ -29,3 +29,6 @@ rmseplot:{[r]
   a[`:legend][`loc pykw"upper right"];
   }'[(ax0;ax1);`euro`asia];
  plt[`:show][];}
+
+/ Find right command for os - used for Brownian bridge demo
+syscmd:$[string[.z.o]like"w*";"cls";"clear"]
