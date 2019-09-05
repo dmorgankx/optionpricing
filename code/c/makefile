@@ -16,7 +16,7 @@ MS             = $(shell getconf LONG_BIT)
 QARCH = $(OSFLAG)$(MS)
 Q     = $(QHOME)/$(QARCH) 
 
-all: rand.so ndist.so
+all: rand.so norm.so
 
 rand.so: rand.o mt19937arcok.o SobolSeq16384N.o
 	gcc -shared -o rand.so rand.o mt19937arcok.o SobolSeq16384N.o
@@ -30,17 +30,17 @@ mt19937arcok.o: mt19937arcok.c
 SobolSeq16384N.o: SobolSeq16384N.c
 	gcc -fPIC -c SobolSeq16384N.c -o SobolSeq16384N.o
 
-ndist.so: ndist.o NDist.o
-	gcc -shared -o ndist.so ndist.o NDist.o
+norm.so: norm.o ndist.o
+	gcc -shared -o norm.so norm.o ndist.o
+
+norm.o: norm.c
+	gcc -DKXVER=3 -fPIC -c norm.c -o norm.o
 
 ndist.o: ndist.c
-	gcc -DKXVER=3 -fPIC -c ndist.c -o ndist.o
-
-NDist.o: NDist.c
-	gcc -fPIC -c NDist.c -o NDist.o
+	gcc -fPIC -c ndist.c -o ndist.o
 
 install:
-	mv ndist.o NDist.o rand.o mt19937arcok.o SobolSeq16384N.o rand.so ndist.so $(Q)
+	mv rand.so norm.so $(Q)
 
 clean:
-	rm -f ndist.o NDist.o rand.o mt19937arcok.o SobolSeq16384N.o rand.so ndist.so
+	rm -f norm.o ndist.o rand.o mt19937arcok.o SobolSeq16384N.o rand.so norm.so
