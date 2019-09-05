@@ -3,11 +3,15 @@
 #include "k.h"
 
 K sobolrand(K x){
- static long i=0;
+ static long i=0; // not yet reentrant
  if(xt!=-KJ)
   R krr("type");
+ if(0==x->j){
+  i=0;
+  R (K)0;
+ }
  K r=ktn(KF,x->j);
- SobolSeq16384N(i++,x->j,kF(r));
+ SobolSeq16384N(++i,x->j,kF(r));
  R r;
 }
 
