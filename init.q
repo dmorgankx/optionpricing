@@ -1,0 +1,9 @@
+loadfile`:code/q/norm.q
+loadfile`:code/q/rand.q
+loadfile`:code/q/bb.q
+loadfile`:code/q/bbdemo.q
+loadfile`:code/q/bs.q
+loadfile`:code/q/mc.q
+loadfile`:code/q/norm.q
+loadfile`:code/q/rand.q
+loadfile`:notebooks/graphics/graphics.q
