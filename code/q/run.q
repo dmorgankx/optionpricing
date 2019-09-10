@@ -1,7 +1,3 @@
-\l bb.q
-\l bs.q
-\l mc.q
-
 pd:`s`k`v`r`q`t!100 100 .2 .05 0 1
 l:20
 m:8+64*til 16

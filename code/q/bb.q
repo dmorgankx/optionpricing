@@ -14,4 +14,4 @@ i.initbb:{[n;d;m]
 
 i.buildpath:{[bb;z]if[count[z]<>n:count bb;'`length];
  {[x;bb;z]@[x;bb`bidx;:;z+(x[bb`ridx]*bb`rwt)+$[0>l:bb`lidx;0;x[l]*bb`lwt]]
-  }/[((n-1)#0.),first z*:bb`sigma;1_bb;1_z]}
+  }/[((n-1)#0.),z 0;1_bb;1_z*:bb`sigma]}
