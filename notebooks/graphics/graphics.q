@@ -2,16 +2,17 @@
 plt:.p.import`matplotlib.pyplot
 
 / Subplot number genertor outputs and distributions
-subplot:{[x;y;tx;ty;p]
- sub:plt[`:subplots]. 1 2;
+subplot:{[d;t;n;p]
+ sub:plt[`:subplots].(1;n);
  fig:sub[@;0];axs:sub[@;1];
- ax0:axs[@;0];ax1:axs[@;1];
+ ax:{x[@;y]}[axs]each tn:til n;
  fig[`:set_figheight;7];
  fig[`:set_figwidth;15];
- ax0[hsym p]. $[`hist~p;(x;64);x];
- ax0[`:set_title]tx;
- ax1[hsym p]. $[`hist~p;(y;64);y];
- ax1[`:set_title]ty;
+ {[d;t;p;a;n]
+  x:d n;
+  a[hsym p]. $[`hist~p;(x;64);x];
+  a[`:set_title]t n;
+  }[d;t]'[p;ax;tn];
  plt[`:show][];}
 
 / Compare prx, rmse or log rmse for BS/MC/QMC prices for Asian/European Markets
