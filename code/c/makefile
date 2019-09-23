@@ -18,8 +18,8 @@ Q     = $(QHOME)/$(QARCH)
 
 all: rand.so norm.so
 
-rand.so: rand.o mt19937arcok.o SobolSeq16384N.o
-	gcc -shared -o rand.so rand.o mt19937arcok.o SobolSeq16384N.o
+rand.so: rand.o mt19937arcok.o SobolSeq1024.o
+	gcc -shared -o rand.so rand.o mt19937arcok.o SobolSeq1024.o
 
 rand.o: rand.c
 	gcc -DKXVER=3 -fPIC -c rand.c -o rand.o
@@ -27,8 +27,8 @@ rand.o: rand.c
 mt19937arcok.o: mt19937arcok.c
 	gcc -fPIC -c mt19937arcok.c -o mt19937arcok.o
 
-SobolSeq16384N.o: SobolSeq16384N.c
-	gcc -fPIC -c SobolSeq16384N.c -o SobolSeq16384N.o
+SobolSeq1024.o: SobolSeq1024.c
+	gcc -fPIC -c SobolSeq1024.c -o SobolSeq1024.o
 
 norm.so: norm.o ndist.o
 	gcc -shared -o norm.so norm.o ndist.o
@@ -43,4 +43,4 @@ install:
 	mv rand.so norm.so $(Q)
 
 clean:
-	rm -f norm.o ndist.o rand.o mt19937arcok.o SobolSeq16384N.o rand.so norm.so
+	rm -f norm.o ndist.o rand.o mt19937arcok.o SobolSeq1024.o rand.so norm.so

@@ -1,4 +1,4 @@
-#include "SobolSeq16384N.h"
+#include "SobolSeq1024.h"
 #include "mt19937arcok.h"
 #include "k.h"
 
@@ -11,7 +11,7 @@ K sobolrand(K x){
   R (K)0;
  }
  K r=ktn(KF,x->j);
- SobolSeq16384N(++i,x->j,kF(r));
+ SobolSeq1024(++i,x->j,kF(r));
  R r;
 }
 
