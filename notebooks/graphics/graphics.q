@@ -10,7 +10,7 @@ subplot:{[d;t;n;p]
  fig[`:set_figwidth;15];
  {[d;t;p;a;n]
   x:d n;
-  a[hsym p]. $[`hist~p;(x;64);x];
+  a[hsym p]. $[`hist~p;(x;10);x];
   a[`:set_title]t n;
   }[d;t]'[p;ax;tn];
  plt[`:show][];}
