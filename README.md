@@ -1,21 +1,41 @@
-# Sobol Option Pricing
+# Option Pricing in kdb+/q
 
-This repository contains q code, translated from C++, which generates prices for Asian and European call options using both Black Scholes and Monte Carlo methods. In addition, q code has been used to wrap the C++ functions required within the Monte Carlo method to generate both random and sobol sequences, and normal distributions.
-
-To run the simulations for pricing Asian and European call options using all available techniques, a script, `run.q`, and a jupyter notebook have been provided.
+This repository contains q scripts which can be used to generates Asian and European option prices using Black Scholes, Monte Carlo and Quasi-Monte Carlo methods. The methods demonstrated follow the work presented in the paper [S. Kucherenko et. al 2007](http://www.broda.co.uk/gsa/wilmott_GSA_SK.pdf). The scripts also include wrappers for the C++ pseudo-random and Sobol sequence number generators, along with the functions required to produce both cumulative and inverse cumulative normal distributions.
 
 ## Requirements
 
 - [JupyterQ](https://github.com/KxSystems/jupyterq) - this produces a tree dependency for kdb+, Python and embedPy
-- SobolSeq16384 (available at [broda.co.uk](http://www.broda.co.uk/SobolSeq/SobolOptionPricing.ZIP))
-- matplotlib
+- Sobol C++ library - `SobolSeq1024` function provided within the library, with max dimension of 1024.
+- [matplotlib]((https://matplotlib.org/)
 
-**Note**: Before running any of the code, make sure that `$QHOME` is defined. Then run:
+**Note**: Before running any of the code, make sure that `$QHOME` is defined.
+
+## Installation
+
+To create the shared object files for the number generators and distribution functions the below must be run:
+
+__Linux__:
 
 ```
 make
 make install
 make clean
 ```
-       
+
+__Windows__:
+
+```
+call build.bat
+```
+
 within the `code/c` directory.
+
+## Loading
+
+Examples of option pricing using all of the techniques provided in the library can be run using the jupyter notebook provided or by running the below script:
+
+```q
+q)\l op.q
+q)loadfile`:init.q
+q)loadfile`:code/q/run.q
+```
