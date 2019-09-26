@@ -2,7 +2,9 @@
 #include "mt19937arcok.h"
 #include "k.h"
 
-K sobolrand(K x){
+#define EXP __declspec(dllexport)
+
+EXP K sobolrand(K x){
  static long i=0; // not yet reentrant
  if(xt!=-KJ)
   R krr("type");
@@ -15,14 +17,14 @@ K sobolrand(K x){
  R r;
 }
 
-K mtinit(K x){
+EXP K mtinit(K x){
  if(xt!=-KJ)
   R krr("type");
  init_genrand((unsigned long)x->j);
  R (K)0;
 }
 
-K mtrand1(K x){
+EXP K mtrand1(K x){
  if(xt!=-KJ)
   R krr("type");
  K r=ktn(KF,x->j);
@@ -34,7 +36,7 @@ K mtrand1(K x){
  R r;
 }
 
-K mtrand2(K x){
+EXP K mtrand2(K x){
  if(xt!=-KJ)
   R krr("type");
  K r=ktn(KF,x->j);
@@ -46,7 +48,7 @@ K mtrand2(K x){
  R r;
 }
 
-K mtrand3(K x){
+EXP K mtrand3(K x){
  if(xt!=-KJ)
   R krr("type");
  K r=ktn(KF,x->j);

@@ -1,7 +1,9 @@
 #include "ndist.h"
 #include "k.h"
 
-K qcnorm(K x){
+#define EXP __declspec(dllexport)
+
+EXP K qcnorm(K x){
  if(xt!=KF)
   R krr("type");
  K r=ktn(KF,x->n);
@@ -10,7 +12,7 @@ K qcnorm(K x){
  R r;
 }
 
-K qinvcnorm(K x){
+EXP K qinvcnorm(K x){
  if(xt!=KF)
   R krr("type");
  K r=ktn(KF,x->n);
