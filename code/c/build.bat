@@ -2,7 +2,7 @@
 echo.
 
 :: Standalone build
-curl -fsSL -o ../q.lib https://github.com/KxSystems/kdb/raw/master/w64/q.lib    || goto :error
+curl -fsSL -o q.lib https://github.com/KxSystems/kdb/raw/master/w64/q.lib    || goto :error
 
 ::keep original PATH, PATH may get too long otherwise
 set OP=%PATH%
