@@ -12,7 +12,7 @@ This repository contains q scripts which can be used to generates Asian and Euro
 
 ## Installation
 
-To create the shared object files for the number generators and distribution functions the below must be run:
+To create the shared object files for the number generators and distribution functions the below must be run within the `code/c` directory:
 
 __Linux__:
 
@@ -26,9 +26,10 @@ __Windows__:
 
 ```
 call build.bat
+mv *.dll %QHOME%\w64
 ```
 
-within the `code/c` directory.
+Note that `build.bat` runs with Visual Studio 2017. To run with other versions, please modify file accordingly.
 
 ## Loading
 
