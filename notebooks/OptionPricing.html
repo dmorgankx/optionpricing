@@ -11907,7 +11907,7 @@ bsAsiaCall:{[n;pd]
 <li><code>q</code> - Dividends</li>
 <li><code>t</code> - Expiry</li>
 </ul>
-<p>Note that the Black-Scholes price of an Asian call option is also dependent on the number of timesteps <code>n</code>. Below we show an example with 512 timesteps.</p>
+<p>Note that the Black-Scholes price of an Asian call option is also dependent on the number of timesteps. Below we show an example with 512 timesteps.</p>
 
 </div>
 </div>
@@ -11961,7 +11961,7 @@ Asian Black Scholes Price:    5.556009
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id='MC'></a></p>
-<h2 id="Monte-Carlo-and-Quasi-Monte-Carlo-Simulations">Monte Carlo and Quasi-Monte Carlo Simulations<a class="anchor-link" href="#Monte-Carlo-and-Quasi-Monte-Carlo-Simulations">&#182;</a></h2><p>In order to generate option prices using MC or QMC methods, a number of experiments must be performed. In each experiment, we:</p>
+<h2 id="Monte-Carlo-and-Quasi-Monte-Carlo-Simulations">Monte Carlo and Quasi-Monte Carlo Simulations<a class="anchor-link" href="#Monte-Carlo-and-Quasi-Monte-Carlo-Simulations">&#182;</a></h2><p>A number of experiments, or trials, can be performed to show the difference between option prices generated using MC or QMC methods compared to the Black Scholes equivalents. In each experiment, we:</p>
 <ol>
 <li>Randomly generate n random numbers, either pseudo-random (MC) or Sobol sequence (QMC).</li>
 <li>Convert into a normal distribution using <code>invcnorm</code>.</li>
@@ -11981,7 +11981,7 @@ Asian Black Scholes Price:    5.556009
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="1.-Random-number-generation">1. Random number generation<a class="anchor-link" href="#1.-Random-number-generation">&#182;</a></h3><p>In the example below, 512 random numbers are generated for both pseudo-random numbers and Sobol sequences, with results plotted for comparison.</p>
 <p>Random numbers are generated using the <a href="https://en.wikipedia.org/wiki/Mersenne_Twister">Mersenne Twister</a> number generator which has 1 parameter, the number of steps.</p>
-<p>The Sobol sequence generator takes in 2 arguments, the number of steps and the Sobol index.</p>
+<p>The Sobol sequence generator takes in 2 arguments, the index of the point (0 &lt; i &lt; 2<sup>31</sup> - 1) and the dimension of the Sobol sequence, i.e. the number of steps (0 &lt; d &lt; 1025).</p>
 
 </div>
 </div>
@@ -12098,7 +12098,7 @@ subplot[(sob;zsob);(&quot;Sobol Uniform&quot;;&quot;Sobol Gaussian&quot;);2;2#`s
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The differences between the Gaussian distributions produced for random and Sobol sequences are best demonstrated for a small number of timesteps, e.g. 64. Below we plot the 1D Gaussian distributions for both random and Sobol number generation across 64 timesteps.</p>
+<p>Below we plot the 1D Gaussian distributions for both random and Sobol number generation across 64 timesteps.</p>
 
 </div>
 </div>
@@ -12852,9 +12852,6 @@ runall:{[bb;pd;l;n;m]
  -1&quot;Asian: time taken = &quot;,string .z.p-st;
  e,a}
 
-/ Show individual results tables
-rt:{[t;m]show delete mkt from select from t where mkt=m}
-
 i.d:`bb`sobol!
 i.rcol:`mkt`npaths`rmse_bb_sobol`rmse_std_sobol`rmse_std_rdm`prx_bb_sobol`prx_std_sobol`prx_std_rdm`prx_bs
 i.rmse:{sqrt avg x*x-:y}
@@ -12902,7 +12899,7 @@ i.run :{[mkt;bs;bb;pd;l;n;m]
 (`euro;256;0.117329;0.3648233;1.065048;10.52265;10.26664;8.453786;10.45058)
 (`euro;512;0.05984563;0.3127605;0.7586819;10.50504;9.799289;11.4056;10.45058)
 (`euro;1024;0.03176637;0.2853521;0.3566248;10.43112;10.29892;11.01441;10.45058)
-European: time taken = 0D00:01:02.417226000
+European: time taken = 0D00:01:03.387622000
 
 `mkt`npaths`rmse_bb_sobol`rmse_std_sobol`rmse_std_rdm`prx_bb_sobol`prx_std_sobol`prx_std_rdm`prx_bs
 (`asia;8;1.044296;2.126291;2.367783;6.461112;5.220244;7.388339;5.551409)
@@ -12913,7 +12910,7 @@ European: time taken = 0D00:01:02.417226000
 (`asia;256;0.0771557;0.2283313;0.6641969;5.590241;5.307291;5.522739;5.551409)
 (`asia;512;0.03863931;0.1614974;0.3205372;5.576155;5.22571;5.24652;5.551409)
 (`asia;1024;0.01975347;0.166499;0.2591332;5.544304;5.629553;5.718109;5.551409)
-Asian: time taken = 0D00:01:06.810027000
+Asian: time taken = 0D00:01:08.057041000
 </pre>
 </div>
 </div>
@@ -13073,7 +13070,7 @@ Asian: time taken = 0D00:01:06.810027000
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h2><p>In this paper we demonstrated that it is possible to calculate option prices using both Black-Scholes and Monte Carlo/Quasi-Monte Carlo methods in kdb+/q. The Monte Carlo/Quasi-Monte Carlo methods used deployed different implementations of both Wiener path approximation and random number generation.</p>
+<h2 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h2><p>In this paper we demonstrated that it is possible to calculate option prices using both Black-Scholes and Monte Carlo/Quasi-Monte Carlo methods in kdb+/q. The Monte Carlo/Quasi-Monte Carlo methods deployed different implementations of both Wiener path approximation and random number generation.</p>
 <p>Looking at the results produced, it is clear that both the option price produced and the resulting RMSE/log RMSE converged fastest when compared to the Black-Scholes price for the Quasi-Monte Carlo approach, with Sobol sequence number generation and Brownian bridge construction.</p>
 <p>Additionally, by plotting results we have shown that the kdb+/q implementation replicates the original results produced in C++, presented in the paper S. Kucherenko et. al 2007.</p>
 

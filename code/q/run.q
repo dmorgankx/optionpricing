@@ -13,9 +13,6 @@ runall:{[bb;pd;l;n;m]
  -1"Asian: time taken = ",string .z.p-st;
  e,a}
 
-/ Show individual results tables
-rt:{[t;m]show delete mkt from select from t where mkt=m}
-
 i.d:`bb`sobol!
 i.rcol:`mkt`npaths`rmse_bb_sobol`rmse_std_sobol`rmse_std_rdm`prx_bb_sobol`prx_std_sobol`prx_std_rdm`prx_bs
 i.rmse:{sqrt avg x*x-:y}
@@ -26,4 +23,5 @@ i.run :{[mkt;bs;bb;pd;l;n;m]
  ec:i.rmse[bs]c:mc[;i.d(bb;0b)]peach numgen[mtrand3;l;m;n];
  i.rcol!0N!(mkt;m;ea;eb;ec;last a;last b;last c;bs)}
 
+/ Run all functions and assign results to r
 r:runall[bb;pd;l;n;m]
