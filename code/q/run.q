@@ -1,27 +1,29 @@
-pd:`s`k`v`r`q`t!100 100 .2 .05 0 1
-l:20
-m:8+64*til 16
-n:1000
-bb:bbridge[n;1]
+/ Parameters
+pd:`s`k`v`r`q`t!100 100 .2 .05 0 1  / Parameter dictionary
+l:20                                / Number of trials
+m:"j"$xexp[2;3+til 8]               / Number of paths
+n:1024                              / Number of steps
+bb:bbridge[n;1]                     / Inital Brownian bridge
 
-d:`bb`sobol!
-rmse:{sqrt avg x*x-:y}
-rcol:"npaths, rmse_bb_sobol, rmse_std_sobol, rmse_std_rdm, prx_bb_sobol"
+/ Run all techniques for option pricing
+runall:{[bb;pd;l;n;m]
+ st:.z.p;0N!i.rcol;e:i.run[`euro;bsEuroCall pd;bb;pd;l;n]each m;
+ -1"European: time taken = ",string[.z.p-st],"\n";
+ st:.z.p;0N!i.rcol;a:i.run[`asia;bsAsiaCall[n;pd];bb;pd;l;n]each m;
+ -1"Asian: time taken = ",string .z.p-st;
+ e,a}
 
--1"Euro BS price ",string bseuro:bsEuroCall[pd];-1 rcol;st:.z.p;
-{[bs;l;n;pd;bb;m]
-  err_a:rmse[bs]a:mcEuroCall[;n;d(bb;1b);pd]each l#m;
-  err_b:rmse[bs]b:mcEuroCall[;n;d(::;1b);pd]each l#m;
-  err_c:rmse[bs]c:mcEuroCall[;n;d(bb;0b);pd]each l#m;
-  0N!("f"$m;err_a;err_b;err_c;last c);
-   }[bseuro;l;n;pd;bb]each m;
--1"Time taken = ",string .z.p-st;
+/ Show individual results tables
+rt:{[t;m]show delete mkt from select from t where mkt=m}
 
--1"Asia BS price ",string bsasia:bsAsiaCall[n;pd];-1 rcol;st:.z.p;
-{[bs;l;n;pd;bb;m]
-  err_a:rmse[bs]a:mcAsiaCall[;n;d(bb;1b);pd]each l#m;
-  err_b:rmse[bs]b:mcAsiaCall[;n;d(::;1b);pd]each l#m;
-  err_c:rmse[bs]c:mcAsiaCall[;n;d(bb;0b);pd]each l#m;
-  0N!("f"$m;err_a;err_b;err_c;last c);
-   }[bsasia;l;n;pd;bb]each m;
--1"Time taken = ",string .z.p-st;
+i.d:`bb`sobol!
+i.rcol:`mkt`npaths`rmse_bb_sobol`rmse_std_sobol`rmse_std_rdm`prx_bb_sobol`prx_std_sobol`prx_std_rdm`prx_bs
+i.rmse:{sqrt avg x*x-:y}
+i.run :{[mkt;bs;bb;pd;l;n;m]
+ mc:$[mkt~`asia;mcAsiaCall;mcEuroCall][;n;;pd];
+ ea:i.rmse[bs]a:mc[;i.d(bb;1b)]peach sob:numgen[sobolrand n;l;m;n];
+ eb:i.rmse[bs]b:mc[;i.d(::;1b)]peach sob;
+ ec:i.rmse[bs]c:mc[;i.d(bb;0b)]peach numgen[mtrand3;l;m;n];
+ i.rcol!0N!(mkt;m;ea;eb;ec;last a;last b;last c;bs)}
+
+r:runall[bb;pd;l;n;m]

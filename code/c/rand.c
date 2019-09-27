@@ -2,18 +2,17 @@
 #include "mt19937arcok.h"
 #include "k.h"
 
+#ifdef _WIN32
 #define EXP __declspec(dllexport)
+#else
+#define EXP
+#endif
 
-EXP K sobolrand(K x){
- static long i=0; // not yet reentrant
- if(xt!=-KJ)
+EXP K sobolrand(K x, K y){
+ if(xt!=-KJ || y->t!=-KJ)
   R krr("type");
- if(0==x->j){
-  i=0;
-  R (K)0;
- }
  K r=ktn(KF,x->j);
- SobolSeq1024(++i,x->j,kF(r));
+ SobolSeq1024(y->j,x->j,kF(r));
  R r;
 }
 
