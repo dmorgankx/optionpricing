@@ -6,7 +6,7 @@ This repository contains q scripts which can be used to generates Asian and Euro
 
 - [JupyterQ](https://github.com/KxSystems/jupyterq) - this produces a tree dependency for kdb+, Python and embedPy
 - Sobol C++ library - `SobolSeq1024` function provided within the library, with max dimension of 1024.
-- [matplotlib]((https://matplotlib.org/)
+- [matplotlib](https://matplotlib.org/)
 
 **Note**: Before running any of the code, make sure that `$QHOME` is defined.
 
