@@ -40,3 +40,5 @@ q)\l op.q
 q)loadfile`:init.q
 q)loadfile`:code/q/run.q
 ```
+
+Note that `run.q` can be multi-threaded.
