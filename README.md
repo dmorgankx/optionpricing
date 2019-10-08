@@ -26,7 +26,6 @@ __Windows__:
 
 ```
 call build.bat
-mv *.dll %QHOME%\w64
 ```
 
 Note that `build.bat` runs with Visual Studio 2017. To run with other versions, please modify file accordingly.
