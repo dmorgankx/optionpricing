@@ -11,6 +11,8 @@ cl /LD /DKXVER=3 /Ferand.dll rand.c SobolSeq1024.c mt19937arcok.c q.lib
 cl /LD /DKXVER=3 /Fenorm.dll norm.c ndist.c q.lib
 set PATH=%OP%
 
+move *.dll %QHOME%\w64\
+
 exit /b 0
 :error
 exit /b %errorLevel%
