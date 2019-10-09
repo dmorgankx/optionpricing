@@ -12,23 +12,26 @@ This repository contains q scripts which can be used to generates Asian and Euro
 
 ## Installation
 
-To create the shared object files for the number generators and distribution functions the below must be run within the `code/c` directory:
+To create the shared object files for the number generators and distribution functions the below must be run:
 
 __Linux__:
 
 ```
-make
-make install
-make clean
+make && make install && make clean
 ```
 
-__Windows__:
+__Windows__ (within `build`):
 
 ```
 call build.bat
 ```
 
-Note that `build.bat` runs with Visual Studio 2017. To run with other versions, please modify file accordingly.
+Note that `build.bat` runs with Visual Studio 2017. To run with 2019 replace line 9 with:
+```
+call "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
+```
+
+For other versions, please modify file accordingly.
 
 ## Loading
 
