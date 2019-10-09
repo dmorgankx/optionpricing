@@ -21,23 +21,23 @@ all: rand.so norm.so
 rand.so: rand.o mt19937arcok.o SobolSeq1024.o
 	gcc -shared -o rand.so rand.o mt19937arcok.o SobolSeq1024.o
 
-rand.o: rand.c
-	gcc -DKXVER=3 -fPIC -c rand.c -o rand.o
+rand.o: src/rand.c
+	gcc -DKXVER=3 -fPIC -c src/rand.c -o rand.o
 
-mt19937arcok.o: mt19937arcok.c
-	gcc -fPIC -c mt19937arcok.c -o mt19937arcok.o
+mt19937arcok.o: src/mt19937arcok.c
+	gcc -fPIC -c src/mt19937arcok.c -o mt19937arcok.o
 
-SobolSeq1024.o: SobolSeq1024.c
-	gcc -fPIC -c SobolSeq1024.c -o SobolSeq1024.o
+SobolSeq1024.o: src/SobolSeq1024.c
+	gcc -fPIC -c src/SobolSeq1024.c -o SobolSeq1024.o
 
 norm.so: norm.o ndist.o
 	gcc -shared -o norm.so norm.o ndist.o
 
-norm.o: norm.c
-	gcc -DKXVER=3 -fPIC -c norm.c -o norm.o
+norm.o: src/norm.c
+	gcc -DKXVER=3 -fPIC -c src/norm.c -o norm.o
 
-ndist.o: ndist.c
-	gcc -fPIC -c ndist.c -o ndist.o
+ndist.o: src/ndist.c
+	gcc -fPIC -c src/ndist.c -o ndist.o
 
 install:
 	mv rand.so norm.so $(Q)
