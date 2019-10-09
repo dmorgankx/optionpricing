@@ -35,12 +35,12 @@ For other versions, please modify file accordingly.
 
 ## Loading
 
-Examples of option pricing using all of the techniques provided in the library can be run using the jupyter notebook provided or by running the below script:
+Examples of option pricing using all of the techniques provided in the library can be run using the Jupyter notebook provided or by running the below script:
 
 ```q
 q)\l op.q
 q)loadfile`:init.q
-q)loadfile`:code/q/run.q
+q)loadfile`:q/run.q
 ```
 
 Note that `run.q` can be multi-threaded.
