@@ -26,7 +26,7 @@ __Windows__ (within `build`):
 call build.bat
 ```
 
-Note that `build.bat` runs with Visual Studio 2017. To run with 2019 replace line 9 with:
+**Note**: `build.bat` runs with Visual Studio 2017. To run with 2019 replace line 9 with:
 ```
 call "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
 ```
