@@ -4,11 +4,12 @@ MS :=
 ifeq ($(shell uname),Linux)
  LNK     = -lrt
  OSFLAG  = l
+ LDFLAGS = -shared -fPIC
  OSXOPTS:=
 else ifeq ($(shell uname),Darwin)
  OSFLAG  = m
  LNK:=
- OSXOPTS = -undefined dynamic_lookup  -mmacosx-version-min=10.12
+ LDFLAGS = -undefined dynamic_lookup
 endif
 
 MS             = $(shell getconf LONG_BIT)
@@ -19,25 +20,25 @@ Q     = $(QHOME)/$(QARCH)
 all: rand.so norm.so
 
 rand.so: rand.o mt19937arcok.o SobolSeq1024.o
-	gcc -shared -o rand.so rand.o mt19937arcok.o SobolSeq1024.o
+	$(CC) $(LDFLAGS) -o rand.so rand.o mt19937arcok.o SobolSeq1024.o
 
 rand.o: src/rand.c
-	gcc -DKXVER=3 -fPIC -c src/rand.c -o rand.o
+	$(CC) -DKXVER=3 -c src/rand.c -o rand.o
 
 mt19937arcok.o: src/mt19937arcok.c
-	gcc -fPIC -c src/mt19937arcok.c -o mt19937arcok.o
+	$(CC) -c src/mt19937arcok.c -o mt19937arcok.o
 
 SobolSeq1024.o: src/SobolSeq1024.c
-	gcc -fPIC -c src/SobolSeq1024.c -o SobolSeq1024.o
+	$(CC) -c src/SobolSeq1024.c -o SobolSeq1024.o
 
 norm.so: norm.o ndist.o
-	gcc -shared -o norm.so norm.o ndist.o
+	$(CC) $(LDFLAGS) -o norm.so norm.o ndist.o
 
 norm.o: src/norm.c
-	gcc -DKXVER=3 -fPIC -c src/norm.c -o norm.o
+	$(CC) -DKXVER=3 -c src/norm.c -o norm.o
 
 ndist.o: src/ndist.c
-	gcc -fPIC -c src/ndist.c -o ndist.o
+	$(CC) -c src/ndist.c -o ndist.o
 
 install:
 	mv rand.so norm.so $(Q)
